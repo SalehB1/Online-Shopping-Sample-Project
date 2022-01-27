@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+
+	<title> صفحه ورود به ناحیه کاربری</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Styles -->
+	<link type="text/css" href="{% static 'css/bootstrap-rtl.min.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'css/animate.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'css/hamburgers.min.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'css/select2.min.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'css/util.css' %}" rel="stylesheet" />
+	<link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+	<!-- / styles -->
+</head>
+
+<body>
+	<div class="limiter">
+		<div class="container-login100">
+              {% if messages %}
+                <div class="justify-content-center p-0 m-0">
+                    <ul class="bg-dark text-warning px-3 py-3 text-center my-3 rounded-pill">
+                        {% for message in messages %}
+                        <p class="text-center text-warning {% if message.tags %}text-{{ message.tags }}{% endif %} p-0 m-0">
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}مهم : {% endif %}
+                            {{ message }}
+                        </p>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+			<div class="wrap-login100">
+
+			<!-- input form -->
+			<form class="login100-form validate-form" action='{% url "sellerLogin" %}' method="post">
+                {% csrf_token %}
+				<span class="login100-form-title">ورود به ناحیه کاربری</span>
+
+				<!-- enter email-->
+				<div class="wrap-input100 validate-input" data-validate = "لطفا پست الکترونیک خود را وارد کنید!">
+                    {{ form.phone }}
+					<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+				</div>
+				<!-- / enter email -->
+
+				<!-- enter password-->
+				<div class="wrap-input100 validate-input" data-validate = "لطفا رمز عبور را وارد کنید!">
+                    {{ form.password }}
+					<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+				</div>
+				<!-- / enter password-->
+
+				<!-- login button-->
+				<div class="container-login100-form-btn">
+					<button class="login100-form-btn">ورود</button>
+				</div>
+				<!-- / login button -->
+				<!-- / restore password-->
+
+				<!-- register-->
+				<div class="text-center p-t-136">
+					<a class="txt2" href="{% url "sellerRegister" %}">
+						<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"  ></i>
+						هنوز ثبت نام نکرده اید ؟
+					</a>
+				</div>
+				<!-- / register-->
+
+			</form>
+			<!-- / input form -->
+
+			<!-- form image -->
+			<div class="login100-pic js-tilt" data-tilt>
+				<img src="{% static 'pics/img-01.png' %}" alt="IMG">
+			</div>
+			<!-- / form image -->
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- scripts -->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/select2.min.js' %}"></script>
+	<script src="{% static 'js/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+	<script src="{% static 'js/scripts.js' %}"></script>
+	<!-- / scripts -->
+</body>
+</html>

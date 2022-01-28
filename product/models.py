@@ -38,8 +38,8 @@ class Shop(models.Model):
     Deleted = DeletedShop()
     UnDeleted = UnDeletedShop()
 
-    def str(self):
-        return f'{self.seller.username} فروشگاه {self.id} با نام {self.name} برای یوزر '
+    def __str__(self):
+        return f'{self.name} فروشگاه '
 
     def random_number_generator(self):
         return '_' + str(random.randint(1000, 9999))

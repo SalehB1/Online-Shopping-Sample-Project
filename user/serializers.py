@@ -1,3 +1,5 @@
+from abc import ABC
+
 from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from .models import User
@@ -40,7 +42,16 @@ class GetTokenForLoginSerializer(TokenObtainPairSerializer):
         return token
 
 
+class GenerateOtpLoginSerializer(serializers.Serializer):
+    phone = serializers.CharField()
+
+
 class ClientProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('phone', 'email', 'username', 'image', 'first_name', 'last_name')
+
+
+class LoginUserWithOtpSerializer(serializers.Serializer):
+    phone = serializers.CharField()
+    otp = serializers.CharField()

@@ -14,7 +14,7 @@
 <body class="bg-dark">
 
     <div class="container bg-dark">
-        <div class="row bg-warning my-3 mx-1">
+        <div class="row bg-success my-3 mx-1">
             <div class="col-md-6 col-xl-4 d-flex " style="justify-content: space-evenly;align-items: center;">
                 {% if request.user.image %}
                 <img width="100" class="rounded-circle my-3" src="{{ request.user.image.url }}" alt="">
@@ -69,7 +69,7 @@
         </div>
 
         <div class="main-card mb-3 card mx-1">
-            <div class="card-body bg-warning">
+            <div class="card-body bg-success">
                 <h5 class="card-title mb-3 text-center"><i class="fas fa-store-alt ms-2"></i>ایجاد فروشگاه جدید</h5>
                 <form action='{% url "createShop" %}' method="post" class="">
                     {% csrf_token %}

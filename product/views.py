@@ -12,8 +12,7 @@ from .models import Shop, Product
 from order.models import Order
 from .forms import CreateShopForm, CreateProductForm
 from django.urls import reverse_lazy
-
-
+from user.apiView import sample
 # Create your views here.
 
 

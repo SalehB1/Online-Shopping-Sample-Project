@@ -11,7 +11,7 @@ from django.utils.html import format_html
 class UserAdmin(UserAdmin):
     search_fields = ('phone', 'username', 'email')
     list_filter = ('is_client', 'is_seller')
-    list_display = ('phone', 'email', 'username', 'is_seller', 'is_client', 'show_image', 'date_joined')
+    list_display = ('phone', 'email', 'username', 'is_seller', 'is_client', 'is_verified', 'show_image', 'date_joined')
     date_hierarchy = ('date_joined')
 
     @admin.display(empty_value='-', description="show image")
@@ -30,7 +30,7 @@ class UserAdmin(UserAdmin):
     )
     fieldsets = (
         (None, {
-            'fields': ('phone', 'password', 'username', 'email', 'is_client', 'is_seller')
+            'fields': ('phone', 'password', 'username', 'email', 'is_client', 'is_seller', 'is_verified')
         }),
 
         ('more options', {
@@ -40,7 +40,7 @@ class UserAdmin(UserAdmin):
     )
 
     save_on_top = True
-    list_editable = ('is_client', 'is_seller')
+    list_editable = ('is_client', 'is_seller', 'is_verified')
 
 
 admin.site.register(User, UserAdmin)

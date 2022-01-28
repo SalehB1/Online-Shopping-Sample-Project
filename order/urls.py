@@ -1,13 +1,14 @@
 from django.urls import path
-from .views import CustomerList, OrderChart, OrderEditstatus, OrderList, ProductList, OrderDetail
+from .views import ClientList, OrderChart, OrderEditstatus, OrderList, ProductList, OrderDetail, OrderEditPayment
 
 
 urlpatterns = [
-    path('order_list/<slug:slug>/', OrderList.as_view(), name='order_list'),
-    path('product_list/<slug:slug>/', ProductList.as_view(), name='product_list'),
-    path('order_detail/<slug:slug>/<int:id>/', OrderDetail.as_view(), name='order_detail'),
-    path('order_eidt_status/<slug:slug>/<int:pk>/', OrderEditstatus.as_view(), name='order_status'),
-    path('customer_list/<slug:slug>/', CustomerList.as_view(), name='customer_list'),
-    path('chart/<slug:slug>/', OrderChart.as_view(), name='order_chart'),
+    path('order/list/<slug:slug>/', OrderList.as_view(), name='order_list'),
+    path('product/list/<slug:slug>/', ProductList.as_view(), name='product_list_url'),
+    path('order/detail/<slug:slug>/<int:id>/', OrderDetail.as_view(), name='order_detail_url'),
+    path('order/edit/status/<slug:slug>/<int:pk>/', OrderEditstatus.as_view(), name='order_status_url'),
+    path('order/edit/pymant/<slug:slug>/<int:pk>/', OrderEditPayment.as_view(), name='order_payment_url'),
+    path('client/list/<slug:slug>/', ClientList.as_view(), name='client_list_url'),
+    path('chart/<slug:slug>/', OrderChart.as_view(), name='order_chart_url'),
 
 ]

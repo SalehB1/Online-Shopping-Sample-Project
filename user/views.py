@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 from .models import User
 
-
+# from apiView import sample
 class SupplierLogin(LoginView):
     template_name = 'Login.html'
     form_class = SellerLoginForm
@@ -75,5 +75,5 @@ class SellerRegister(CreateView):
             messages.success(request, "ثبت نام با موفقیت انجام شد.")
             return redirect('sellerLogin')
         messages.error(request, "ورودی نامعتبر !")
-
         return redirect('sellerRegister')
+

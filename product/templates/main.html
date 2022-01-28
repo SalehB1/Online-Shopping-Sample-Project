@@ -9,13 +9,14 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
           integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>پنل کاربری {{ request.user.username }}</title>
 </head>
 
 <body class="bg-dark">
 
 <div class="container bg-dark">
-    <div class="row bg-warning my-3 mx-1">
+    <div class="row bg-success my-3 mx-1">
         <div class="col-md-6 col-xl-4 d-flex " style="justify-content: space-evenly;align-items: center;">
             {% if request.user.image %}
                 <img width="100" class="rounded-circle my-3" src="{{ request.user.image.url }}" alt="">
@@ -24,8 +25,50 @@
             {% endif %}
             <div class="d-flex flex-column text-center my-3">
                 <span class="d-block">نام کاربری : {{ request.user.username }}</span>
-                <span class="d-block mt-2">شماره تلفن : {{ request.user.phone }}</span>
+                <span class="d-block mt-2">شماره تلفن : <span id="phone">{{ request.user.phone }}</span></span>
+
                 <span class="d-block mt-2">
+                    {% if user.is_verified is False %}
+                        <button type="button" id="sendotp" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                          شماره همراه تایید نشده
+                        </button>
+                    {% else %}
+                        <button class="btn btn-primary" href="#" data-toggle="tooltip" title="تایید شد">شماره همراه تایید شده</button>
+                    {% endif %}
+                    {% csrf_token %}
+                    <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">تایید تلفن همراه</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <div class="form-group">
+                        <label for="phone-number">شماره همراه</label>
+                        <input type="text" class="form-control" placeholder="Enter email" id="phone-number"
+                               name="phone">
+                      </div>
+                      <div class="form-group">
+                        <label for="otp">کد:</label>
+                        <input type="text" class="form-control" placeholder="Enter password" id="otp" name="otp">
+                      </div>
+                      <div class="form-group form-check">
+
+                      </div>
+                      <button type="submit" class="btn btn-primary" id="modalsubmit">Submit</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 {#            <a href="" class="w3-bar-item w3-button text-dark btn btn-dark"><i class="fa fa-user text-warning"></i></a>#}
 {#            <a href="" class="w3-bar-item w3-button text-dark btn btn-dark"><i#}
 {#                class="fas fa-user-cog text-warning"></i></a>#}
@@ -54,8 +97,8 @@
         </div>
         <div class="col-md-12 col-xl-4 d-flex" style="justify-content: space-evenly;align-items: center;">
             <div class="d-flex flex-column my-3 w-100">
-{#          <span class="d-block"><a href="" class="btn btn-dark text-warning w-100"><i#}
-{#                  class="fas fa-comments ms-2"></i>وبلاگ</a></span>#}
+                {#          <span class="d-block"><a href="" class="btn btn-dark text-warning w-100"><i#}
+                {#                  class="fas fa-comments ms-2"></i>وبلاگ</a></span>#}
                 <span class="d-block mt-2"><a href="{% url 'createShop' %}" class="btn btn-dark text-warning w-100"><i
                         class="fas fa-shopping-cart ms-2"></i>ایجاد فروشگاه جدید</a></span>
                 <span class="d-block mt-2">
@@ -65,7 +108,7 @@
             </div>
         </div>
         <div class="col-md-6 col-xl-4 ">
-        <h5 class="lh-1 lh-sm lh-base lh-lg"> نام فروشگاه:  {{  shop.name  }}</h5>
+            <h5 class="lh-1 lh-sm lh-base lh-lg"> نام فروشگاه: {{ shop.name }}</h5>
             <h5 class="mt-3">نوع مارکت :
                 {% if shop.type == "SU" %}
                     سوپر مارکت
@@ -105,13 +148,14 @@
         </div>
         <div class="col-md-12 col-xl-4 d-flex" style="justify-content: space-evenly;align-items: center;">
             <div class="d-flex flex-column my-3 w-100">
-                {#          <span class="d-block mt-2"><a href="" class="btn btn-dark text-warning w-100"><i#}
-                {#                class="fas fa-clipboard ms-2"></i>گزارشات</a></span>#}
+                <span class="d-block mt-2"><a href="{% url 'order_chart_url' shop.slug %}"
+                                              class="btn btn-dark text-warning w-100"><i
+                                  class="fas fa-clipboard ms-2"></i>گزارشات</a></span>
 
-                {#          <span class="d-block mt-2"><a href="" class="btn btn-dark text-warning w-100"><i#}
-                {#                class="fas fa-shopping-cart ms-2"></i>لیست فروشگاه ها</a></span>#}
-                {#          <span class="d-block mt-2"><a href="" class="btn btn-dark text-warning w-100"><i#}
-                {#                class="fas fa-shopping-bag ms-2"></i>لیست محصولات</a></span>#}
+{#                <span class="d-block mt-2"><a href="" class="btn btn-dark text-warning w-100"><i#}
+{#                        class="fas fa-shopping-cart ms-2"></i>لیست فروشگاه ها</a></span>#}
+{#                <span class="d-block mt-2"><a href="" class="btn btn-dark text-warning w-100"><i#}
+{#                        class="fas fa-shopping-bag ms-2"></i>لیست محصولات</a></span>#}
             </div>
         </div>
 
@@ -131,7 +175,46 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+    myModal.addEventListener('shown.bs.modal', function () {
+        myInput.focus()
+    })
+</script>
+<script>
+    $(function () {
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]')
 
+        $("#sendotp").click(function () {
+            var phone = $("#phone").text()
+            console.log(phone)
+            $.post("/API/clinet/api/generateotp/", {
+                phone: phone
+            }, function (data, status) {
+
+            });
+        });
+
+
+        $("form").on("submit", function (event) {
+
+            event.preventDefault();
+            $.ajax({
+                url: "/API/clinet/api/activeuserphone/",
+                method: "POST",
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                data: $(this).serialize(),
+                success: function (data) {
+                    location.reload(true);
+                }
+
+            })
+        });
+    });
+</script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 {% block content %}      
 
     <div class="main-card mb-3 card mx-1">
-        <div class="card-body bg-warning"><h5 class="card-title mb-3 text-center"><i class="fas fa-store-alt ms-2"></i>ویرایش فروشگاه</h5>
+        <div class="card-body bg-success"><h5 class="card-title mb-3 text-center"><i class="fas fa-store-alt ms-2"></i>ویرایش فروشگاه</h5>
             <form action='{% url "editShop" shop.slug %}' method="post" class="">
                 {% csrf_token %}
 
@@ -35,7 +35,7 @@
                 
                 <div class="row">
                     <div class="col-md-6">
-                        <button class="btn btn-success w-100">ویرایش</button>
+                        <button class="btn btn-success w-100" id="edit">ویرایش</button>
                     </div>
                     <div class="col-md-6">
                         <a href='{% url "sellerLogin" %}' class="btn btn-danger w-100">لغو</a>

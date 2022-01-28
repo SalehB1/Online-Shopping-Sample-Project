@@ -7,7 +7,7 @@ from product.models import Product
 
 
 class Order(models.Model):
-    CHECKING = "py"
+    CHECKING = "CH"
     CONFIRMED = "CO"
     CANCELED = "CA"
 

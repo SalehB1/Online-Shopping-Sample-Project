@@ -98,7 +98,7 @@ class OrderEditPayment(LoginRequiredMixin, View):
         obj = Order.objects.filter(pk=self.kwargs['pk']).first()
         if obj.is_payment == False:
             self.model.objects.filter(pk=self.kwargs['pk']).update(is_payment=True)
-        return redirect('order_list_url', self.kwargs['slug'])
+        return redirect('order_list', self.kwargs['slug'])
 
 
 class ClientList(LoginRequiredMixin, DetailView):

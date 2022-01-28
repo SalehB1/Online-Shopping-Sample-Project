@@ -131,10 +131,10 @@
         <div class="col-md-6 col-xl-4 d-flex " style="justify-content: space-evenly;align-items: center;">
             <div class="d-flex flex-column my-3 w-100">
                 {% if shop.is_confirmed %}
-                    <span class="d-block"><a href="" class="btn btn-success w-100"><i class="fas fa-store-alt ms-2"></i>فروشگاه
+                    <span class="d-block"><a href="{% url 'shopDetail' shop.slug %}" class="btn btn-warning w-100"><i class="fas fa-store-alt ms-2"></i>فروشگاه
               {{ shop.name }} فعال است</a></span>
                 {% else %}
-                    <span class="d-block"><a href="" class="btn btn-dark w-100"><i class="fas fa-store-alt ms-2"></i>فروشگاه
+                    <span class="d-block"><a href="{% url 'shopDetail' shop.slug %}" class="btn btn-dark w-100"><i class="fas fa-store-alt ms-2"></i>فروشگاه
               {{ shop.name }} فعال نیست</a></span>
                 {% endif %}
                 <span class="d-block mt-2"><a href="{% url 'editShop' shop.slug %}" class="btn btn-secondary w-100"><i

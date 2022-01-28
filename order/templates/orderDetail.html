@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="row mx-1 my-3">
-    <div class="col-md-12 bg-warning">
+    <div class="col-md-12 bg-success">
             {% for order in order_list %}
             <div class="card-header text-center text-dark h3 py-3s">
                 جزئیات فروشگاه {{shop.name}} سفارش {{order.id}}
@@ -13,7 +13,7 @@
 
             <div class="row my-3 mx-1">
                 <div class="col-md-6 col-xl-6 h-auto">
-                    <div class="bg-warning text-dark text-center h-100">
+                    <div class="bg-success text-dark text-center h-100">
                         <div class="card-body">
                                  <div>نام کاربری : {{ order.client.username }}</div>
                                  <div>ایمیل : {{ order.client.email }}</div>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-6 h-auto mb-3">
-                    <div class=" bg-warning text-dark text-center h-100">
+                    <div class=" bg-success text-dark text-center h-100">
                         <div class="card-body">
                             <div class=" col-12">
                                 <div class="widget-content-center mr-3">
@@ -42,7 +42,7 @@
                                     <div class="widget-heading">
                                         پرداخت
                                         {% if order.is_payment %}
-                                        <span class="text-success">شده</span>
+                                        <span class="text-warning">شده</span>
                                         {% else %}
                                         <span class="text-danger">نشده</span>
                                         {% endif %}
@@ -54,7 +54,7 @@
                                  <div>
                                     {% if not order.is_payment %}
                                     <a href="{% url 'order_payment_url' slug=shop.slug pk=order.id %}"
-                                    class="btn btn-success my-3">پرداخت شد</a>
+                                    class="btn btn-success my-3">پرداخت</a>
                                     {% endif %}
                                  </div>
                             </div>

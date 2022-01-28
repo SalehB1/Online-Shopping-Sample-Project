@@ -87,7 +87,7 @@ class OrderEditstatus(LoginRequiredMixin, View):
         else:
             self.model.objects.filter(pk=self.kwargs['pk']).update(status='CA')
             messages.info(request, f"سفارش شماره {obj.id} لغو شد.")
-        return redirect('order_list_url', self.kwargs['slug'])
+        return redirect('order_list', self.kwargs['slug'])
 
 
 class OrderEditPayment(LoginRequiredMixin, View):

@@ -8,4 +8,5 @@ urlpatterns = [
     path('open_order/', UnpaidOrderView.as_view(), name='open_order_api'),
     path('closed_order/', PaidOrderView.as_view(), name='closed_order_api'),
 
+
 ]

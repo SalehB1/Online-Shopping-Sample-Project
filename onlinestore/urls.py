@@ -45,4 +45,6 @@ urlpatterns = [
                   re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
                   path('API/clinet/', include('user.ApiUrls')),
                   path('API/shop/', include('product.apiUrls')),
+                  path('API/order/', include('order.apiUrls')),
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

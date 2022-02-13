@@ -29,7 +29,7 @@ class CreateOrderView(generics.ListCreateAPIView):
         if product_id:
             product = get_object_or_404(Product, id=product_id, shop__slug=self.kwargs['slug'])
             if product.stock > 0:
-                if product.is_active == True:
+                if product.is_active:
                     try:
                         order = Order.objects.get(shop=shop, client=self.request.user, is_payment=False)
                     except:

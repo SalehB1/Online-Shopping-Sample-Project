@@ -106,3 +106,4 @@ class PaidOrderView(generics.ListAPIView):
 
     def get_queryset(self, *arg, **kwargs):
         return Order.objects.filter(client=self.request.user, is_payment=True)
+
